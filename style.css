@@ -58,8 +58,34 @@ body {
     align-self: center;
     font-weight: 600;
     text-transform: uppercase;
+    color: rgb(221, 241, 241);
+}
+
+.sub-box-footer {
+    color: rgb(221, 241, 241, .3);
 }
 
 .sub-box-circle-cross {
     display: flex;
+}
+
+.sub-box-circle-cross>div {
+    flex: 1;
+    border: 1px solid blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sub-box-circle-cross>:last-child {
+    margin-block: 5px;
+    margin-right: 5px;
+}
+
+.cross {
+    font-size: 3.5rem;
+}
+
+.circle {
+    font-size: 2.5rem;
 }
