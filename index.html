@@ -6,10 +6,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+
     <title>Tic Tac Toe</title>
 </head>
 
 <body>
+    <div class="wrapper">
+        <div class="cross-circle">
+            <div><i class="fa-solid fa-xmark"></i></div>
+            <div><i class="fa-solid fa-circle-dot"></i></div>
+        </div>
+        <div class="sub-box">
+            <p class="sub-box-heading">Pick player 1's mark</p>
+            <div class="sub-box-circle-cross">
+                <i class="fa-solid fa-xmark"></i>
+                <div>
+                    <i class="fa-regular fa-circle"></i>
+                </div>
+                <p class="sub-box-footer">Remember X goes fast</p>
+            </div>
+        </div>
+        <div>
+            <button>New Game(vs cpu)</button>
+            <button>New Game(vs player)</button>
+        </div>
+    </div>
+
+
+
     <script src="./index.js"></script>
 </body>
 
