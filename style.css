@@ -11,15 +11,11 @@ body {
 
 .wrapper {
     height: 100vh;
-    border: 1px solid yellow;
     display: flex;
     flex-direction: column;
     margin-block: 7rem;
     margin-inline: 2rem;
-}
-
-.wrapper>div {
-    border: 1px solid;
+    gap: 1.2rem;
 }
 
 .cross-circle {
@@ -42,14 +38,12 @@ body {
 }
 
 .sub-box {
-    height: 200px;
+    height: 180px;
     display: flex;
     flex-direction: column;
-}
-
-.sub-box-circle-cross {
-    height: 80px;
-    border: 1px solid orange;
+    padding-inline: 1.2rem;
+    background-color: rgb(54, 54, 73);
+    border-radius: 15px;
 }
 
 .sub-box-heading,
@@ -62,24 +56,32 @@ body {
 }
 
 .sub-box-footer {
-    color: rgb(221, 241, 241, .3);
+    color: rgba(149, 158, 158, 0.3);
 }
 
 .sub-box-circle-cross {
     display: flex;
+    background-color: rgb(36, 35, 49);
+    height: 80px;
+    border-radius: 10px;
 }
 
 .sub-box-circle-cross>div {
     flex: 1;
-    border: 1px solid blue;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+.sub-box-circle-cross>:first-child {
+    color: rgb(205, 235, 235);
+}
+
 .sub-box-circle-cross>:last-child {
     margin-block: 5px;
     margin-right: 5px;
+    background-color: rgb(205, 235, 235);
+    border-radius: 10px;
 }
 
 .cross {
