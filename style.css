@@ -10,7 +10,7 @@ body {
 }
 
 .wrapper {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     margin-block: 7rem;
@@ -34,7 +34,7 @@ body {
     font-size: 3rem;
     font-weight: 900;
     align-self: center;
-    color: rgb(201, 160, 26);
+    color: rgb(243, 148, 25);
 }
 
 .sub-box {
@@ -44,6 +44,7 @@ body {
     padding-inline: 1.2rem;
     background-color: rgb(54, 54, 73);
     border-radius: 15px;
+    box-shadow: 0 5px rgb(26, 25, 25);
 }
 
 .sub-box-heading,
@@ -90,4 +91,35 @@ body {
 
 .circle {
     font-size: 2.5rem;
+}
+
+.buttons {
+    align-self: center;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.game-btn {
+    display: block;
+    width: 350px;
+    align-self: center;
+    padding-block: 15px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: rgb(53, 53, 80);
+    border-radius: 15px;
+    border: none;
+}
+
+.cpu-btn {
+    background-color: rgb(243, 148, 25);
+    box-shadow: 0 5px rgb(243, 148, 25, .3);
+}
+
+.player-btn {
+    background-color: rgb(43, 196, 196);
+    box-shadow: 0 5px rgb(43, 196, 196, .5);
 }
