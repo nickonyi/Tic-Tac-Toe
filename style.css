@@ -123,3 +123,48 @@ body {
     background-color: rgb(43, 196, 196);
     box-shadow: 0 5px rgb(43, 196, 196, .5);
 }
+
+
+/*---------------------------*/
+
+
+/*----Table page styling-----*/
+
+
+/*--------------------------*/
+
+.header {
+    border: 1px solid white;
+    display: flex;
+    gap: 100px;
+}
+
+.header>div {
+    border: 1px solid red;
+    flex: 1;
+    flex-basis: auto;
+}
+
+.cross-circle-table {
+    display: flex;
+    width: 250px;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.turn-sign {
+    border: 5px solid yellow;
+    width: 300px;
+}
+
+.table-x {
+    font-size: 3rem;
+    color: rgb(43, 196, 196)
+}
+
+.table-circle {
+    font-size: 2rem;
+    align-self: center;
+    color: rgb(243, 148, 25);
+}
