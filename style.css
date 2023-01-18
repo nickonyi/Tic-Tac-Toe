@@ -137,10 +137,10 @@ body {
     border: 1px solid white;
     display: flex;
     gap: 100px;
+    padding-inline: 30px;
 }
 
 .header>div {
-    border: 1px solid red;
     flex: 1;
     flex-basis: auto;
 }
@@ -154,8 +154,22 @@ body {
 }
 
 .turn-sign {
-    border: 5px solid yellow;
-    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 230px;
+    margin-block: 20px;
+    gap: 5px;
+    border-radius: 5px;
+    background: rgb(58, 71, 83);
+    padding-inline: 3px;
+    box-shadow: 0 5px rgb(58, 71, 83, .4);
+}
+
+.turn-sign>p {
+    font-size: 1rem;
+    text-transform: uppercase;
+    color: rgb(198, 223, 223);
 }
 
 .table-x {
@@ -163,8 +177,26 @@ body {
     color: rgb(43, 196, 196)
 }
 
+.table-xx {
+    font-size: 2rem;
+    color: rgb(198, 223, 223);
+}
+
 .table-circle {
     font-size: 2rem;
     align-self: center;
     color: rgb(243, 148, 25);
+}
+
+.reset-btn-container {
+    display: flex;
+    align-items: center;
+}
+
+.reset-btn {
+    padding: 10px;
+    background: rgb(198, 223, 223);
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 5px rgb(198, 223, 223, .3);
 }
