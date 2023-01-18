@@ -134,10 +134,10 @@ body {
 /*--------------------------*/
 
 .header {
-    border: 1px solid white;
     display: flex;
     gap: 100px;
     padding-inline: 30px;
+    min-height: 0;
 }
 
 .header>div {
@@ -199,4 +199,11 @@ body {
     border: none;
     border-radius: 5px;
     box-shadow: 0 5px rgb(198, 223, 223, .3);
+}
+
+.board {
+    height: 60vh;
+    min-width: 100vw;
+    margin-top: 50px;
+    border: 1px solid yellow;
 }
