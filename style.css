@@ -296,7 +296,7 @@ body {
 }
 
 .modal-box {
-    border: 1px solid salmon;
+    background: rgb(50, 46, 83);
     color: white;
     font-size: 1.6rem;
     width: 100%;
@@ -308,7 +308,6 @@ body {
 }
 
 .modal-box>div {
-    border: 1px solid saddlebrown;
     margin-block: 5px;
 }
 
@@ -334,8 +333,12 @@ body {
 }
 
 .btn-box {
-    padding-block: 10px;
+    padding-block: 5px;
     padding-inline: 10px;
+}
+
+.btn-box>:first-child {
+    margin-inline-end: 10px;
 }
 
 .btn-quit {
@@ -348,4 +351,16 @@ body {
     border: none;
     background-color: rgb(198, 223, 223);
     box-shadow: 0 5px rgb(198, 223, 223, .8);
+}
+
+.btn-round {
+    padding-block: 10px;
+    padding-inline: 20px;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 5px;
+    border: none;
+    background-color: rgb(243, 148, 25);
+    box-shadow: 0 5px rgb(243, 148, 25, .8);
 }
