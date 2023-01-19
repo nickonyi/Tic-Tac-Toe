@@ -13,7 +13,7 @@ const modalbox = (function() {
     let myModal = document.getElementById('modal');
     let btn = document.getElementById('btn');
     btn.onclick = function() {
-        myModal.style.display = "block";
+        myModal.style.display = "flex";
     };
     window.onclick = function(e) {
         if (e.target === myModal) {
