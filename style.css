@@ -133,6 +133,10 @@ body {
 
 /*--------------------------*/
 
+.table {
+    padding-inline: 20px;
+}
+
 .header {
     display: flex;
     padding-inline: 15px;
@@ -206,12 +210,10 @@ body {
     box-shadow: 0 5px rgb(198, 223, 223, .3);
 }
 
-.board {
+#board {
     height: 60vh;
-    min-width: 100vw;
+    width: 100%;
     margin-top: 50px;
-    border: 1px solid yellow;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    gap: 20px;
 }
