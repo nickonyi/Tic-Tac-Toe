@@ -8,3 +8,17 @@ const gridTable = (function() {
         board.style.gridTemplateRows = `repeat(${3},1fr)`;
     }
 }());
+
+const modalbox = (function() {
+    let myModal = document.getElementById('modal');
+    let btn = document.getElementById('btn');
+    btn.onclick = function() {
+        myModal.style.display = "block";
+    };
+    window.onclick = function(e) {
+        if (e.target === myModal) {
+            myModal.style.display = "none";
+        }
+    }
+
+}());

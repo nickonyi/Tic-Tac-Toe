@@ -16,6 +16,23 @@
 </head>
 
 <body class="table">
+    <!-- Start of my modal box-->
+    <div id="modal">
+        <div class="modal-box">
+            <p class="modal-box-header">You Won!</p>
+            <div>
+                <div>
+                    <i class="fa-sharp fa-solid fa-xmark table-x"></i>
+                </div>
+                <p class="modal-message">Takes the round</p>
+            </div>
+            <div class="btn-box">
+                <button class="quit">Quit</button>
+                <button class="round">Next Round</button>
+            </div>
+        </div>
+    </div>
+    <!-- End of my modal box-->
     <div class="header">
         <div class="cross-circle-table">
             <div><i class="fa-sharp fa-solid fa-xmark table-x"></i></div>
@@ -30,6 +47,24 @@
         </div>
     </div>
     <div id="board"></div>
+    <div class="board-footer">
+        <div class="board-footer-1">
+            <p class="mark">X(You)</p>
+            <p class="number">14</p>
+        </div>
+        <div class="board-footer-2">
+            <p class="mark">Ties</p>
+            <p class="number">32</p>
+        </div>
+        <div class="board-footer-3">
+            <p class="mark">O(cpu)</p>
+            <p class="number">11</p>
+        </div>
+    </div>
+
+
+
+    <button id="btn">Open box</button>
 
 </body>
 

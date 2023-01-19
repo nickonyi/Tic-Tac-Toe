@@ -224,3 +224,78 @@ body {
     border-radius: 10px;
     box-shadow: 0 5px rgb(17, 16, 27);
 }
+
+.board-footer {
+    display: flex;
+    margin-top: 25px;
+    height: 60px;
+    gap: 1rem;
+}
+
+.board-footer>div {
+    flex: 1;
+    display: flex;
+    place-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-transform: uppercase;
+    font-size: 0.925rem;
+    border-radius: 10px;
+}
+
+.number {
+    font-weight: 900;
+}
+
+.board-footer-1 {
+    background-color: rgb(43, 196, 196);
+}
+
+.board-footer-2 {
+    background-color: rgb(198, 223, 223);
+}
+
+.board-footer-3 {
+    background-color: rgb(243, 148, 25);
+}
+
+#btn {
+    margin-top: 30px;
+}
+
+
+/*------------*/
+
+
+/*---- Modal box-------*/
+
+
+/*------------------*/
+
+#modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    padding-top: 100px;
+    /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.8);
+    /* Black w/ opacity */
+}
+
+.modal-box {
+    border: 1px solid salmon;
+    color: white;
+    font-size: 1.6rem;
+}
