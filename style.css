@@ -135,6 +135,7 @@ body {
 
 .table {
     padding-inline: 20px;
+    height: 120vh;
 }
 
 .header {
@@ -216,4 +217,10 @@ body {
     margin-top: 50px;
     display: grid;
     gap: 20px;
+}
+
+.board-box {
+    background: rgb(50, 46, 83);
+    border-radius: 10px;
+    box-shadow: 0 5px rgb(17, 16, 27);
 }
