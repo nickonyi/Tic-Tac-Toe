@@ -292,7 +292,7 @@ body {
     /* Fallback color */
     background-color: rgba(0, 0, 0, 0.8);
     /* Black w/ opacity */
-    align-items: star;
+    align-items: start;
 }
 
 .modal-box {
