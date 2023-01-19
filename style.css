@@ -135,7 +135,7 @@ body {
 
 .table {
     padding-inline: 20px;
-    height: 120vh;
+    height: 130vh;
 }
 
 .header {
@@ -292,7 +292,7 @@ body {
     /* Fallback color */
     background-color: rgba(0, 0, 0, 0.8);
     /* Black w/ opacity */
-    align-items: center;
+    align-items: start;
 }
 
 .modal-box {
