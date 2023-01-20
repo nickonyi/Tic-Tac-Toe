@@ -216,7 +216,7 @@ body {
 }
 
 #board {
-    height: 60vh;
+    height: 300px;
     width: 100%;
     margin-top: 50px;
     display: grid;
@@ -422,10 +422,10 @@ body {
         width: 100%;
     }
     .table {
-        border: 11px solid sandybrown;
         padding-inline: 150px;
-        padding-block-start: 150px;
-        padding-block-end: 150px;
-        height: 160vh;
+        padding-block-start: 50px;
+    }
+    .board {
+        height: 300px;
     }
 }
