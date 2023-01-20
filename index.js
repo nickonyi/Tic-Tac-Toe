@@ -22,3 +22,16 @@ const modalbox = (function() {
     }
 
 }());
+const modalbox2 = (function() {
+    let myModal = document.getElementById('my-modal');
+    let btn = document.getElementById('btn-btn');
+    btn.onclick = function() {
+        myModal.style.display = "flex";
+    };
+    window.onclick = function(e) {
+        if (e.target === myModal) {
+            myModal.style.display = "none";
+        }
+    }
+
+}());
