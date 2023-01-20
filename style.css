@@ -99,6 +99,12 @@ body {
     display: flex;
     flex-direction: column;
     gap: 40px;
+    border: 1px solid yellow;
+}
+
+.buttons>div {
+    flex: 1;
+    border: 1px solid pink;
 }
 
 .game-btn {
@@ -363,4 +369,26 @@ body {
     border: none;
     background-color: rgb(243, 148, 25);
     box-shadow: 0 5px rgb(243, 148, 25, .8);
+}
+
+
+/*-----------------------------*/
+
+
+/*--------Media queriess------*/
+
+
+/*-----------------------------*/
+
+@media only screen and (min-width:45rem) {
+    .wrapper {
+        margin-inline: 150px;
+        margin-top: 40px;
+    }
+    .buttons {
+        width: 100%;
+    }
+    .game-btn {
+        width: 100%;
+    }
 }
