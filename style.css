@@ -429,3 +429,15 @@ body {
         height: 300px;
     }
 }
+
+@media only screen and (min-width:55rem) {
+    .wrapper {
+        margin-inline: 500px;
+    }
+    .table {
+        padding-inline: 500px;
+    }
+    .board {
+        height: 400px;
+    }
+}

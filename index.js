@@ -10,15 +10,13 @@ const gridTable = (function() {
 }());
 
 const modalbox = (function() {
-    let myModal = document.getElementById('modal');
+    let modal = document.getElementById('modal');
     let btn = document.getElementById('btn');
     btn.onclick = function() {
-        myModal.style.display = "flex";
+        modal.style.display = "flex";
     };
-    window.onclick = function(e) {
-        if (e.target === myModal) {
-            myModal.style.display = "none";
-        }
+    window.onclick = function(event) {
+        console.log(event.target);
     }
 
 }());
