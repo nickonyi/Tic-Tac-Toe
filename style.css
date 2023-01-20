@@ -229,6 +229,10 @@ body {
     box-shadow: 0 5px rgb(17, 16, 27);
 }
 
+.board-box:hover {
+    cursor: pointer;
+}
+
 .board-footer {
     display: flex;
     margin-top: 25px;
