@@ -140,7 +140,7 @@ body {
 
 .table {
     padding-inline: 20px;
-    height: 130vh;
+    display: none;
 }
 
 .header {

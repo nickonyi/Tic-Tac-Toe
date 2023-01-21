@@ -15,6 +15,7 @@
 </head>
 
 <body>
+
     <div class="wrapper">
         <div class="cross-circle">
             <div><i class="fa-solid fa-xmark"></i></div>
@@ -34,10 +35,81 @@
             <p class="sub-box-footer">Remember:X goes first</p>
         </div>
         <div class="buttons">
-            <div><button onclick="window.location.href='table.html';" class="game-btn cpu-btn">New Game (vs cpu)</button></div>
+            <div><button class="game-btn cpu-btn">New Game (vs cpu)</button></div>
             <div><button class="game-btn player-btn">New Game (vs player)</button></div>
         </div>
     </div>
+
+
+    <!-- Start of my modal box-->
+    <div id="modal">
+        <div class="modal-box">
+            <div class="modal-box-header">You Won!</div>
+            <div class="modal-box-content">
+                <div>
+                    <i class="fa-sharp fa-solid fa-xmark table-modal-x"></i>
+                </div>
+                <p class="modal-message">Takes the round</p>
+            </div>
+            <div class="btn-box">
+                <button class="btn-quit">Quit</button>
+                <button class="btn-round">Next Round</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- End of my modal box-->
+    <!--------Modal box 2-->
+    <div id="my-modal">
+        <div class="modal-box">
+            <div class="modal-box-content">
+                <p class="modal-message">Restart game?</p>
+            </div>
+            <div class="btn-box">
+                <button class="btn-quit">No,Cancel</button>
+                <button class="btn-round">Yes,Restart</button>
+            </div>
+        </div>
+    </div>
+    <!--------End of Modal box 2-->
+
+    <div class="table">
+        <div class="header">
+            <div class="cross-circle-table">
+                <div><i class="fa-sharp fa-solid fa-xmark table-x"></i></div>
+                <div><i class="fa-solid fa-circle-dot table-circle"></i></div>
+            </div>
+            <div class="turn-sign">
+                <div><i class="fa-solid fa-xmark table-xx"></i></div>
+                <p>Turn</p>
+            </div>
+            <div class="reset-btn-container">
+                <button class="reset-btn"><i class="fa-solid fa-rotate-right"></i></button>
+            </div>
+        </div>
+        <div id="board"></div>
+        <div class="board-footer">
+            <div class="board-footer-1">
+                <p class="mark">X(You)</p>
+                <p class="number">14</p>
+            </div>
+            <div class="board-footer-2">
+                <p class="mark">Ties</p>
+                <p class="number">32</p>
+            </div>
+            <div class="board-footer-3">
+                <p class="mark">O(cpu)</p>
+                <p class="number">11</p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <button id="btn">Open box</button>
+    <button id="btn-btn">We dem Boyz</button>
+
 
 
 

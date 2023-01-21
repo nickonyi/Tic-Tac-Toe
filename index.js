@@ -9,12 +9,48 @@ const gameBoard = (function() {
         board.style.gridTemplateRows = `repeat(${3},1fr)`;
     }
     const divs = document.querySelectorAll('.board-box');
-    console.log(divs);
+
     divs.forEach(div => div.addEventListener("click", () => {
         const element = gameArr[0];
         div.textContent = element;
     }));
 
+}());
+
+
+const mainBoard = (function() {
+    const wrapper = document.querySelector(".wrapper");
+    const table = document.querySelector(".table");
+    const cpuBtn = document.querySelector('.cpu-btn');
+
+    cpuBtn.addEventListener("click", () => {
+        table.style.display = "block";
+        wrapper.style.display = "none";
+    });
+}());
+
+const selectMarker = (function() {
+    const xMark = document.querySelector('.x-mark');
+    const circleMark = document.querySelector('.circle-mark');
+    xMark.addEventListener('click', () => {
+        if (xMark.classList.contains('circle-mark')) {
+            xMark.classList.remove('circle-mark');
+            circleMark.classList.add('circle-mark');
+        } else {
+            xMark.classList.add('circle-mark');
+            circleMark.classList.remove('circle-mark');
+        }
+    });
+    circleMark.addEventListener('click', () => {
+        if (circleMark.classList.contains('circle-mark')) {
+            circleMark.classList.remove('circle-mark');
+            xMark.classList.add('circle-mark');
+        } else {
+            circleMark.classList.add('circle-mark');
+            xMark.classList.remove('circle-mark');
+
+        }
+    });
 }());
 
 const modalbox = (function() {
@@ -24,7 +60,9 @@ const modalbox = (function() {
         modal.style.display = "flex";
     };
     window.onclick = function(event) {
-        console.log(event.target);
+        if (e.target === myModal) {
+            myModal.style.display = "none";
+        }
     }
 
 }());
