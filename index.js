@@ -1,23 +1,3 @@
-const gameBoard = (function() {
-    const board = document.getElementById('board');
-    const gameArr = ["x", "0"];
-    for (i = 0; i < 9; i++) {
-        var newDiv = document.createElement('div');
-        newDiv.classList.add("board-box");
-        board.appendChild(newDiv);
-        board.style.gridTemplateColumns = `repeat(${3},1fr)`;
-        board.style.gridTemplateRows = `repeat(${3},1fr)`;
-    }
-    const divs = document.querySelectorAll('.board-box');
-
-    divs.forEach(div => div.addEventListener("click", () => {
-        const element = gameArr[0];
-        div.textContent = element;
-    }));
-
-}());
-
-
 const mainBoard = (function() {
     const wrapper = document.querySelector('.wrapper');
     const table = document.querySelector('.table');
