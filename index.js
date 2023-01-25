@@ -65,7 +65,6 @@ const modalbox2 = (function() {
 
 }());
 
-
 const Player = (sign) => {
     this.sign = sign;
     const getSign = () => {
@@ -76,12 +75,10 @@ const Player = (sign) => {
 
 const gameBoard = (function() {
     const board = ["", "", "", "", "", "", "", "", ""];
-    const setField = (index, sign) => {
-        if (index > board.length) return;
+    const setValue = (index, sign) => {
         board[index] = sign;
     }
-    const getField = (index) => {
-        if (index > board.length) return;
+    const getValue = (index) => {
         return board[index];
     }
     const reset = () => {
@@ -89,5 +86,52 @@ const gameBoard = (function() {
             board[i] = "";
         }
     }
-    return { setField, getField, reset }
+
+    return { board, setValue, getValue, reset }
+
 }());
+
+
+const displayController = (function() {
+    const boardDivs = document.querySelectorAll('.board-box');
+    boardDivs.forEach(boardDiv => boardDiv.addEventListener("click", (e) => {
+        console.log(e.target.dataset.index);
+        gameController.playRound(parseInt(e.target.dataset.index));
+        console.log(gameBoard.board);
+        updateBoard();
+    }));
+
+    const updateBoard = () => {
+        for (i = 0; i < boardDivs.length; i++) {
+            boardDivs[i].textContent = gameBoard.getValue(i);
+        }
+    }
+
+
+    const reset = document.getElementById("reset-btn");
+    reset.add
+
+
+
+}());
+
+const gameController = (function() {
+    const playerX = Player("X");
+    const playerO = Player("O");
+    let gameOver = false;
+    let round = 1;
+
+    const playRound = (getIndex) => {
+        gameBoard.setValue(getIndex, getPlayerSign());
+        round++;
+    }
+
+
+    const getPlayerSign = () => {
+
+        return round % 2 === 1 ? playerX.getSign() : playerO.getSign();
+    }
+    return { getPlayerSign, playRound }
+}());
+
+console.log(gameController.getPlayerSign(5));

@@ -15,5 +15,21 @@ Restart button to restart the entire game
 
 cell click flow
 Track any clicks that click on our cell
+Update game state
+validate game state
+Update changes made into the UI
+Repeat and last end the game
 
+
+Player
+-Set the mark of the players.
+
+Gameboard
+- sets the player's mark in an array
+- Retrieves the player mark from the array
+- Resets the array
+
+DisplayControll
+
+GameControl
 
