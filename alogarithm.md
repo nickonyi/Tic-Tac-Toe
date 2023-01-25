@@ -4,3 +4,16 @@ What are the inputs?X and O
 Where will it get the inputs?from a gameboard array?
 What is the output?Player should click to a specific spot in the gameboard to add his marker.
 What are the steps to get me to the output?
+get the markers
+determine which marker goes fast then alternate
+
+Tic Tac Toe flow
+Display the information for the current player turn
+Display who won the game
+Display if there was a tie
+Restart button to restart the entire game
+
+cell click flow
+Track any clicks that click on our cell
+
+
