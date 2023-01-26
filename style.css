@@ -230,6 +230,9 @@ body {
     background: rgb(50, 46, 83);
     border-radius: 10px;
     box-shadow: 0 5px rgb(17, 16, 27);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .board-box:hover {

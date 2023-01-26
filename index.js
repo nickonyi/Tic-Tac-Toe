@@ -38,19 +38,6 @@ const selectMarker = (function() {
     });
 }());
 
-const modalbox = (function() {
-    let modal = document.getElementById('modal');
-    let btn = document.getElementById('btn');
-    btn.onclick = function() {
-        modal.style.display = "flex";
-    };
-    window.onclick = function(e) {
-        if (e.target === modal) {
-            modal.style.display = "none";
-        }
-    }
-
-}());
 const modalbox2 = function() {
     let myModal = document.getElementById('my-modal');
     let btn = document.getElementById('btn-btn');
@@ -94,6 +81,9 @@ const gameBoard = (function() {
 
 const displayController = (function() {
     const boardDivs = document.querySelectorAll('.board-box');
+    let messageElement = document.querySelector('.turn-sign');
+    const reset = document.getElementById("reset-btn");
+
     boardDivs.forEach(boardDiv => boardDiv.addEventListener("click", (e) => {
         if (gameController.getIsOver() || e.target.textContent !== "") return;
         gameController.playRound(parseInt(e.target.dataset.index));
@@ -107,34 +97,75 @@ const displayController = (function() {
     }
 
 
-    const reset = document.getElementById("reset-btn");
+
     reset.addEventListener("click", (e) => {
         gameBoard.reset();
         gameController.reset();
         updateBoard();
     });
 
+    const modalbox = () => {
+        let modal = document.getElementById('modal');
+        modal.style.display = "flex";
 
+        window.onclick = function(e) {
+            if (e.target === modal) {
+                modal.style.display = "none";
+            }
+        }
+
+    };
+
+    const setMessage = (message) => {
+        messageElement.textContent = message;
+    }
+
+    return { setMessage, modalbox }
 
 }());
 
 const gameController = (function() {
     const playerX = Player("X");
     const playerO = Player("O");
-    let gameOver = false
-
-
+    let gameOver = false;
     let round = 1;
+
+
 
     const playRound = (getIndex) => {
         gameBoard.setValue(getIndex, getPlayerSign());
+        if (checkWinner(getIndex)) {
+            displayController.modalbox();
+            gameOver = true;
+            return;
+        }
 
         if (round === 9) {
-            console.log("Is Over");
+            console.log("It is a draw");
             gameOver = true;
         }
         round++;
+        displayController.setMessage(`${getPlayerSign()}'s turn`);
     }
+    const checkWinner = (index) => {
+        const winConditions = [
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8],
+            [0, 3, 6],
+            [1, 4, 7],
+            [2, 5, 8],
+            [0, 4, 8],
+            [2, 4, 6]
+        ]
+        return winConditions
+            .filter((combination) => combination.includes(index))
+            .some((possibleCombinations =>
+                possibleCombinations.every(
+                    (index) => gameBoard.getValue(index) === getPlayerSign()
+                )));
+
+    };
 
 
     const getPlayerSign = () => {
@@ -149,4 +180,17 @@ const gameController = (function() {
         gameOver = false;
     }
     return { getIsOver, playRound, reset }
+}());
+
+const markerStyler = (function() {
+    const turnSign = document.querySelectorAll(".board-box");
+
+    for (i = 0; i < turnSign.length; i++) {
+        console.log(turnSign[i].innerHTML);
+        if (turnSign[i].textContent == "x") {
+            turnSign[i].style.color = "pink";
+        } else {
+            turnSign[i].style.color = "yellow";
+        }
+    }
 }());
