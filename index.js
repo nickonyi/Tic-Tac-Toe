@@ -87,7 +87,7 @@ const gameBoard = (function() {
         }
     }
 
-    return { board, setValue, getValue, reset }
+    return { setValue, getValue, reset }
 
 }());
 
