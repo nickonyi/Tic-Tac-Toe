@@ -89,10 +89,24 @@ const displayController = (function() {
         gameController.playRound(parseInt(e.target.dataset.index));
         updateBoard();
     }));
+    const markerColor = () => {
+        const turnSign = document.querySelectorAll(".board-box");
+
+        for (i = 0; i < turnSign.length; i++) {
+            console.log(gameBoard.getValue(i));
+            if (gameBoard.getValue(i) == "X") {
+                turnSign[i].style.color = "pink";
+            } else {
+                turnSign[i].style.color = "yellow";
+            }
+        }
+    };
 
     const updateBoard = () => {
         for (i = 0; i < boardDivs.length; i++) {
+            markerColor();
             boardDivs[i].textContent = gameBoard.getValue(i);
+
         }
     }
 
@@ -180,17 +194,4 @@ const gameController = (function() {
         gameOver = false;
     }
     return { getIsOver, playRound, reset }
-}());
-
-const markerStyler = (function() {
-    const turnSign = document.querySelectorAll(".board-box");
-
-    for (i = 0; i < turnSign.length; i++) {
-        console.log(turnSign[i].innerHTML);
-        if (turnSign[i].textContent == "x") {
-            turnSign[i].style.color = "pink";
-        } else {
-            turnSign[i].style.color = "yellow";
-        }
-    }
 }());
