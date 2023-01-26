@@ -44,14 +44,14 @@ const modalbox = (function() {
     btn.onclick = function() {
         modal.style.display = "flex";
     };
-    window.onclick = function(event) {
-        if (e.target === myModal) {
-            myModal.style.display = "none";
+    window.onclick = function(e) {
+        if (e.target === modal) {
+            modal.style.display = "none";
         }
     }
 
 }());
-const modalbox2 = (function() {
+const modalbox2 = function() {
     let myModal = document.getElementById('my-modal');
     let btn = document.getElementById('btn-btn');
     btn.onclick = function() {
@@ -63,7 +63,7 @@ const modalbox2 = (function() {
         }
     }
 
-}());
+};
 
 const Player = (sign) => {
     this.sign = sign;
@@ -95,9 +95,8 @@ const gameBoard = (function() {
 const displayController = (function() {
     const boardDivs = document.querySelectorAll('.board-box');
     boardDivs.forEach(boardDiv => boardDiv.addEventListener("click", (e) => {
-        console.log(e.target.dataset.index);
+        if (gameController.getIsOver() || e.target.textContent !== "") return;
         gameController.playRound(parseInt(e.target.dataset.index));
-        console.log(gameBoard.board);
         updateBoard();
     }));
 
@@ -109,7 +108,11 @@ const displayController = (function() {
 
 
     const reset = document.getElementById("reset-btn");
-    reset.add
+    reset.addEventListener("click", (e) => {
+        gameBoard.reset();
+        gameController.reset();
+        updateBoard();
+    });
 
 
 
@@ -118,11 +121,18 @@ const displayController = (function() {
 const gameController = (function() {
     const playerX = Player("X");
     const playerO = Player("O");
-    let gameOver = false;
+    let gameOver = false
+
+
     let round = 1;
 
     const playRound = (getIndex) => {
         gameBoard.setValue(getIndex, getPlayerSign());
+
+        if (round === 9) {
+            console.log("Is Over");
+            gameOver = true;
+        }
         round++;
     }
 
@@ -131,7 +141,12 @@ const gameController = (function() {
 
         return round % 2 === 1 ? playerX.getSign() : playerO.getSign();
     }
-    return { getPlayerSign, playRound }
+    const getIsOver = () => {
+        return gameOver;
+    }
+    const reset = () => {
+        round = 1;
+        gameOver = false;
+    }
+    return { getIsOver, playRound, reset }
 }());
-
-console.log(gameController.getPlayerSign(5));
