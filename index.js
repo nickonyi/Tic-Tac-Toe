@@ -72,6 +72,7 @@ const displayController = (function() {
     let drawMessage = document.querySelector('.modal-box-content');
     let modalHeader = document.querySelector('.modal-box-header');
     let myModal = document.getElementById('my-modal');
+    let modal = document.getElementById('modal');
     const btnRestart = document.getElementById('btn-restart');
     const btnCancel = document.getElementById('btn-cancel');
     const reset = document.getElementById("reset-btn");
@@ -104,14 +105,12 @@ const displayController = (function() {
         }
     }
 
-
     const quit = () => {
         btnRestart.onclick = function() {
             gameBoard.reset();
             gameController.reset();
             updateBoard();
             myModal.style.display = "none";
-
         }
     }
 
@@ -124,9 +123,9 @@ const displayController = (function() {
     });
 
     const modalbox = () => {
-        let modal = document.getElementById('modal');
         setModalMessage(gameController.getPlayerSign());
         modal.style.display = "flex";
+        quit();
 
         window.onclick = function(e) {
             if (e.target === modal) {
@@ -181,7 +180,7 @@ const displayController = (function() {
         drawMessage.textContent = message;
     }
 
-    return { setMessage, modalbox, modalBoxDraw }
+    return { setMessage, modalbox, modalBoxDraw, modal, updateBoard }
 
 }());
 
@@ -241,4 +240,22 @@ const gameController = (function() {
         gameOver = false;
     }
     return { getIsOver, playRound, reset, getPlayerSign }
+}());
+
+
+const round = (function() {
+    const quit = document.getElementById("btn-quit");
+    const nextRound = document.getElementById("btn-round");
+    const wrapper = document.querySelector('.wrapper');
+    const table = document.querySelector('.table');
+
+    quit.onclick = function() {
+        gameBoard.reset();
+        gameController.reset();
+        displayController.updateBoard();
+        table.style.display = "none";
+        wrapper.style.display = "block";
+        displayController.modal.style.display = "none";
+
+    }
 }());
