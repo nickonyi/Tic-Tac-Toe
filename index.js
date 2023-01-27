@@ -82,6 +82,7 @@ const gameBoard = (function() {
 const displayController = (function() {
     const boardDivs = document.querySelectorAll('.board-box');
     let messageElement = document.querySelector('.turn-sign');
+    let winningMessage = document.querySelector('.winning-message');
     const reset = document.getElementById("reset-btn");
 
     boardDivs.forEach(boardDiv => boardDiv.addEventListener("click", (e) => {
@@ -94,7 +95,6 @@ const displayController = (function() {
         const turnSign = document.querySelectorAll(".board-box");
 
         for (i = 0; i < turnSign.length; i++) {
-            console.log(gameBoard.getValue(i));
             if (gameBoard.getValue(i) == "X") {
                 turnSign[i].style.color = "rgb(43, 196, 196)";
             } else {
@@ -121,6 +121,7 @@ const displayController = (function() {
 
     const modalbox = () => {
         let modal = document.getElementById('modal');
+        setModalMessage(gameController.getPlayerSign());
         modal.style.display = "flex";
 
         window.onclick = function(e) {
@@ -131,8 +132,20 @@ const displayController = (function() {
 
     };
 
+    const setResultMessage = (winner) => {
+        if (winner === "draw") {
+            setModalMessage("It's a tie yoh!")
+        } else {
+            setModalMessage(`Player ${winner} has won`);
+        }
+    }
+
     const setMessage = (message) => {
         messageElement.textContent = message;
+    }
+
+    const setModalMessage = (message) => {
+        winningMessage.textContent = message;
     }
 
     return { setMessage, modalbox }
@@ -156,7 +169,6 @@ const gameController = (function() {
         }
 
         if (round === 9) {
-            console.log("It is a draw");
             gameOver = true;
         }
         round++;
@@ -194,5 +206,5 @@ const gameController = (function() {
         round = 1;
         gameOver = false;
     }
-    return { getIsOver, playRound, reset }
+    return { getIsOver, playRound, reset, getPlayerSign }
 }());
