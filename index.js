@@ -72,7 +72,8 @@ const displayController = (function() {
     let drawMessage = document.querySelector('.modal-box-content');
     let modalHeader = document.querySelector('.modal-box-header');
     let myModal = document.getElementById('my-modal');
-    const btnQuit = document.getElementById('btn-round');
+    const btnRestart = document.getElementById('btn-restart');
+    const btnCancel = document.getElementById('btn-cancel');
     const reset = document.getElementById("reset-btn");
 
     boardDivs.forEach(boardDiv => boardDiv.addEventListener("click", (e) => {
@@ -104,16 +105,21 @@ const displayController = (function() {
     }
 
 
-
-    reset.addEventListener("click", (e) => {
-        modalRestart();
-        btnQuit.onclick = function() {
-            let modal = document.getElementById('modal');
+    const quit = () => {
+        btnRestart.onclick = function() {
             gameBoard.reset();
             gameController.reset();
             updateBoard();
             myModal.style.display = "none";
 
+        }
+    }
+
+    reset.addEventListener("click", (e) => {
+        modalRestart();
+        quit();
+        btnCancel.onclick = function() {
+            myModal.style.display = "none";
         }
     });
 
