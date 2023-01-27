@@ -88,6 +88,7 @@ const displayController = (function() {
         if (gameController.getIsOver() || e.target.textContent !== "") return;
         gameController.playRound(parseInt(e.target.dataset.index));
         updateBoard();
+        markerColor();
     }));
     const markerColor = () => {
         const turnSign = document.querySelectorAll(".board-box");
@@ -95,16 +96,16 @@ const displayController = (function() {
         for (i = 0; i < turnSign.length; i++) {
             console.log(gameBoard.getValue(i));
             if (gameBoard.getValue(i) == "X") {
-                turnSign[i].style.color = "pink";
+                turnSign[i].style.color = "rgb(43, 196, 196)";
             } else {
-                turnSign[i].style.color = "yellow";
+                turnSign[i].style.color = "rgb(243, 148, 25)";
             }
         }
     };
 
     const updateBoard = () => {
         for (i = 0; i < boardDivs.length; i++) {
-            markerColor();
+
             boardDivs[i].textContent = gameBoard.getValue(i);
 
         }
