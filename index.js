@@ -120,12 +120,13 @@ const displayController = (function() {
         btnCancel.onclick = function() {
             myModal.style.display = "none";
         }
+        setMessage(`X'S turn`);
     });
 
     const modalbox = () => {
-        setModalMessage(gameController.getPlayerSign());
+        setResultMessage(gameController.getPlayerSign());
         modal.style.display = "flex";
-        quit();
+
 
         window.onclick = function(e) {
             if (e.target === modal) {
@@ -137,7 +138,7 @@ const displayController = (function() {
 
     const modalBoxDraw = () => {
         let modal = document.getElementById('modal');
-        setResultMessage("draw");
+        setResultMessage('draw');
         modal.style.display = "flex";
 
         window.onclick = function(e) {
@@ -158,12 +159,30 @@ const displayController = (function() {
         }
 
     };
+    const round = (function() {
+        const quit = document.getElementById("btn-quit");
+        const nextRound = document.getElementById("btn-round");
+        const wrapper = document.querySelector('.wrapper');
+        const table = document.querySelector('.table');
+
+        quit.onclick = function() {
+            gameBoard.reset();
+            gameController.reset();
+            updateBoard();
+            setMessage(`X'S turn`);
+            table.style.display = "none";
+            wrapper.style.display = "block";
+            modal.style.display = "none";
+
+
+        }
+    }());
 
     const setResultMessage = (winner) => {
         if (winner === "draw") {
             setDrawMessage("It's a tie yoh!")
         } else {
-            setModalMessage(`Player ${winner} has won`);
+            setModalMessage(` ${winner} takes the round`);
         }
     }
 
@@ -172,15 +191,16 @@ const displayController = (function() {
     }
 
     const setModalMessage = (message) => {
-        modalHeader.style.display = "none";
-        winningMessage.textContent = message;
-    }
 
-    const setDrawMessage = (message) => {
         drawMessage.textContent = message;
     }
 
-    return { setMessage, modalbox, modalBoxDraw, modal, updateBoard }
+    const setDrawMessage = (message) => {
+        modalHeader.style.display = "none";
+        drawMessage.textContent = message;
+    }
+
+    return { setMessage, modalbox, modalBoxDraw }
 
 }());
 
@@ -203,6 +223,7 @@ const gameController = (function() {
         if (round === 9) {
             displayController.modalBoxDraw();
             gameOver = true;
+            return;
         }
         round++;
         displayController.setMessage(`${getPlayerSign()}'s turn`);
@@ -240,22 +261,4 @@ const gameController = (function() {
         gameOver = false;
     }
     return { getIsOver, playRound, reset, getPlayerSign }
-}());
-
-
-const round = (function() {
-    const quit = document.getElementById("btn-quit");
-    const nextRound = document.getElementById("btn-round");
-    const wrapper = document.querySelector('.wrapper');
-    const table = document.querySelector('.table');
-
-    quit.onclick = function() {
-        gameBoard.reset();
-        gameController.reset();
-        displayController.updateBoard();
-        table.style.display = "none";
-        wrapper.style.display = "block";
-        displayController.modal.style.display = "none";
-
-    }
 }());
