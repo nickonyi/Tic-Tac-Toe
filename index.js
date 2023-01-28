@@ -68,8 +68,7 @@ const gameBoard = (function() {
 const displayController = (function() {
     const boardDivs = document.querySelectorAll('.board-box');
     let messageElement = document.querySelector('.turn-sign');
-    let winningMessage = document.querySelector('.winning-message');
-    let drawMessage = document.querySelector('.modal-box-content');
+    let alertMessage = document.querySelector('.modal-box-content');
     let modalHeader = document.querySelector('.modal-box-header');
     let myModal = document.getElementById('my-modal');
     let modal = document.getElementById('modal');
@@ -159,7 +158,7 @@ const displayController = (function() {
         }
 
     };
-    const round = (function() {
+    const roundQuit = (function() {
         const quit = document.getElementById("btn-quit");
         const nextRound = document.getElementById("btn-round");
         const wrapper = document.querySelector('.wrapper');
@@ -192,12 +191,12 @@ const displayController = (function() {
 
     const setModalMessage = (message) => {
 
-        drawMessage.textContent = message;
+        alertMessage.textContent = message;
     }
 
     const setDrawMessage = (message) => {
         modalHeader.style.display = "none";
-        drawMessage.textContent = message;
+        alertMessage.textContent = message;
     }
 
     return { setMessage, modalbox, modalBoxDraw }
@@ -209,6 +208,9 @@ const gameController = (function() {
     const playerO = Player("O");
     let gameOver = false;
     let round = 1;
+    let winner = 0;
+    let draw = 0;
+    let loser = 0;
 
 
 
@@ -216,6 +218,16 @@ const gameController = (function() {
         gameBoard.setValue(getIndex, getPlayerSign());
         if (checkWinner(getIndex)) {
             displayController.modalbox();
+            if (getPlayerSign() == "X") {
+                winner++;
+                console.log("winner:" + winner);
+            } else if (getPlayerSign() == "O") {
+                loser++;
+                console.log("loser:" + loser);
+            } else if (alertMessage.textContent == "draw") {
+                draw++;
+                console.log("draw:" + draw);
+            }
             gameOver = true;
             return;
         }
@@ -247,6 +259,10 @@ const gameController = (function() {
                 )));
 
     };
+
+    const nextRound = () => {
+
+    }
 
 
     const getPlayerSign = () => {
