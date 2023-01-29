@@ -224,7 +224,7 @@ const gameController = (function() {
             } else if (getPlayerSign() == "O") {
                 loser++;
                 console.log("loser:" + loser);
-            } else if (alertMessage.textContent == "draw") {
+            } else if (a) {
                 draw++;
                 console.log("draw:" + draw);
             }
