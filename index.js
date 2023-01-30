@@ -177,6 +177,16 @@ const displayController = (function() {
         }
     }());
 
+    const nextRound = (function() {
+        const btnRound = document.getElementById('btn-round');
+        btnRound.onclick = function() {
+            gameBoard.reset();
+            gameController.reset();
+            updateBoard();
+            modal.style.display = "none";
+        }
+    }());
+
     const setResultMessage = (winner) => {
         if (winner === "draw") {
             setDrawMessage("It's a tie yoh!")
@@ -206,11 +216,14 @@ const displayController = (function() {
 const gameController = (function() {
     const playerX = Player("X");
     const playerO = Player("O");
+    const numberX = document.querySelector('.number-X');
+    const numberO = document.querySelector('.number-O');
+    const numberTie = document.querySelector('.number-tie');
     let gameOver = false;
     let round = 1;
-    let winner = 0;
+    let winnerX = 0;
     let draw = 0;
-    let loser = 0;
+    let winnerO = 0;
 
 
 
@@ -218,28 +231,33 @@ const gameController = (function() {
         gameBoard.setValue(getIndex, getPlayerSign());
         if (checkWinner(getIndex)) {
             displayController.modalbox();
-            if (getPlayerSign() == "X") {
-                winner++;
-                console.log("winner:" + winner);
-            } else if (getPlayerSign() == "O") {
-                loser++;
-                console.log("loser:" + loser);
-            } else if (a) {
-                draw++;
-                console.log("draw:" + draw);
+            if (getPlayerSign() === "X") {
+                winnerX++;
+                console.log("WinnerX:" + winnerX);
+                numberX.textContent = winnerX;
+            } else {
+                winnerO++
+                console.log("WinnerO:" + winnerO);
+                numberO.textContent = winnerO;
             }
             gameOver = true;
             return;
         }
 
+
         if (round === 9) {
             displayController.modalBoxDraw();
+            draw++;
+            console.log("draw:" + draw);
+            numberTie.textContent = draw;
             gameOver = true;
             return;
         }
         round++;
         displayController.setMessage(`${getPlayerSign()}'s turn`);
     }
+
+
     const checkWinner = (index) => {
         const winConditions = [
             [0, 1, 2],
@@ -260,15 +278,13 @@ const gameController = (function() {
 
     };
 
-    const nextRound = () => {
-
-    }
-
 
     const getPlayerSign = () => {
 
         return round % 2 === 1 ? playerX.getSign() : playerO.getSign();
     }
+
+
     const getIsOver = () => {
         return gameOver;
     }
