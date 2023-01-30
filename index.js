@@ -75,6 +75,9 @@ const displayController = (function() {
     const btnRestart = document.getElementById('btn-restart');
     const btnCancel = document.getElementById('btn-cancel');
     const reset = document.getElementById("reset-btn");
+    const numberX = document.querySelector('.number-X');
+    const numberO = document.querySelector('.number-O');
+    const numberTie = document.querySelector('.number-tie');
 
     boardDivs.forEach(boardDiv => boardDiv.addEventListener("click", (e) => {
         if (gameController.getIsOver() || e.target.textContent !== "") return;
@@ -109,6 +112,9 @@ const displayController = (function() {
             gameBoard.reset();
             gameController.reset();
             updateBoard();
+            gameController.resetCounter();
+            resetCounter();
+            setMessage(`X'S turn`);
             myModal.style.display = "none";
         }
     }
@@ -119,8 +125,9 @@ const displayController = (function() {
         btnCancel.onclick = function() {
             myModal.style.display = "none";
         }
-        setMessage(`X'S turn`);
+
     });
+
 
     const modalbox = () => {
         setResultMessage(gameController.getPlayerSign());
@@ -158,6 +165,15 @@ const displayController = (function() {
         }
 
     };
+
+    const resetCounter = () => {
+        gameController.resetCounter();
+        numberX.textContent = gameController.winnerX;
+        numberO.textContent = gameController.winnerO;
+        numberTie.textContent = gameController.draw;
+
+
+    }
     const roundQuit = (function() {
         const quit = document.getElementById("btn-quit");
         const nextRound = document.getElementById("btn-round");
@@ -168,6 +184,7 @@ const displayController = (function() {
             gameBoard.reset();
             gameController.reset();
             updateBoard();
+            resetCounter();
             setMessage(`X'S turn`);
             table.style.display = "none";
             wrapper.style.display = "block";
@@ -233,11 +250,9 @@ const gameController = (function() {
             displayController.modalbox();
             if (getPlayerSign() === "X") {
                 winnerX++;
-                console.log("WinnerX:" + winnerX);
                 numberX.textContent = winnerX;
             } else {
                 winnerO++
-                console.log("WinnerO:" + winnerO);
                 numberO.textContent = winnerO;
             }
             gameOver = true;
@@ -248,7 +263,6 @@ const gameController = (function() {
         if (round === 9) {
             displayController.modalBoxDraw();
             draw++;
-            console.log("draw:" + draw);
             numberTie.textContent = draw;
             gameOver = true;
             return;
@@ -292,5 +306,10 @@ const gameController = (function() {
         round = 1;
         gameOver = false;
     }
-    return { getIsOver, playRound, reset, getPlayerSign }
+    const resetCounter = () => {
+        winnerX = 0;
+        winnerO = 0;
+        draw = 0;
+    }
+    return { getIsOver, playRound, reset, getPlayerSign, resetCounter, winnerX, winnerO, draw }
 }());
