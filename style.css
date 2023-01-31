@@ -457,3 +457,11 @@ body {
         height: 400px;
     }
 }
+
+
+/***********************AI TABLE***********************/
+
+.ai-table {
+    padding-inline: 20px;
+    display: none;
+}
