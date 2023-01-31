@@ -60,10 +60,15 @@ const gameBoard = (function() {
         }
     }
 
-    return { setValue, getValue, reset }
+    return { setValue, getValue, reset, board }
 
 }());
 
+const computerBoard = (function() {
+    const prototype = gameBoard;
+    return Object.assign({}, prototype);
+})();
+console.log(computerBoard.board);
 
 const displayController = (function() {
     const boardDivs = document.querySelectorAll('.board-box');
