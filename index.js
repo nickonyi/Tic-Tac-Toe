@@ -1,15 +1,18 @@
 const mainBoard = (function() {
     const wrapper = document.querySelector('.wrapper');
     const table = document.querySelector('.table');
+    const tableAI = document.querySelector('.table-ai');
+    const board2 = document.querySelector('#board-2');
     const cpuBtn = document.querySelector('.cpu-btn');
     const playerBtn = document.querySelector('.player-btn');
 
+    console.log(tableAI);
     cpuBtn.addEventListener("click", () => {
-        table.style.display = "block";
+        tableAI.style.display = "block";
         wrapper.style.display = "none";
     });
     playerBtn.addEventListener("click", () => {
-        table.style.display = "block";
+        tableAI.style.display = "block";
         wrapper.style.display = "none";
     });
 }());
