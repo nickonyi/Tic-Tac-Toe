@@ -2,19 +2,21 @@ const mainBoard = (function() {
     const wrapper = document.querySelector('.wrapper');
     const table = document.querySelector('.table');
     const tableAI = document.querySelector('.table-ai');
-    const board2 = document.querySelector('#board-2');
+    const board = document.querySelector('#board');
     const cpuBtn = document.querySelector('.cpu-btn');
     const playerBtn = document.querySelector('.player-btn');
 
     console.log(tableAI);
     cpuBtn.addEventListener("click", () => {
-        tableAI.style.display = "block";
+        table.style.display = "block";
         wrapper.style.display = "none";
     });
     playerBtn.addEventListener("click", () => {
-        tableAI.style.display = "block";
+        table.style.display = "block";
         wrapper.style.display = "none";
     });
+
+    return { board }
 }());
 
 const selectMarker = (function() {
@@ -87,13 +89,14 @@ const displayController = (function() {
     const numberO = document.querySelector('.number-O');
     const numberTie = document.querySelector('.number-tie');
 
-    boardDivs.forEach(boardDiv => boardDiv.addEventListener("click", (e) => {
+    const gridCellClick = (e) => {
         if (gameController.getIsOver() || e.target.textContent !== "") return;
         gameController.playRound(parseInt(e.target.dataset.index));
         updateBoard();
         markerColor();
-    }));
+    }
 
+    mainBoard.board.addEventListener("click", gridCellClick);
 
     const markerColor = () => {
         const turnSign = document.querySelectorAll(".board-box");
@@ -234,7 +237,7 @@ const displayController = (function() {
         alertMessage.textContent = message;
     }
 
-    return { setMessage, modalbox, modalBoxDraw }
+    return { setMessage, modalbox, modalBoxDraw, gridCellClick }
 
 }());
 
@@ -320,4 +323,9 @@ const gameController = (function() {
         draw = 0;
     }
     return { getIsOver, playRound, reset, getPlayerSign, resetCounter, winnerX, winnerO, draw }
+}());
+
+
+const computerFillCell = (function() {
+
 }());

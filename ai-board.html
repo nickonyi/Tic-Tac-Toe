@@ -1,39 +1,95 @@
-<div class="table-ai">
-    <div class="header">
-        <div class="cross-circle-table">
-            <div><i class="fa-sharp fa-solid fa-xmark table-x"></i></div>
-            <div><i class="fa-solid fa-circle-dot table-circle"></i></div>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Oswald:wght@300;400;500;600&family=Roboto+Condensed&family=Sevillana&display=swap" rel="stylesheet">
+    <title>Tic Tac Toe</title>
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <!-- Start of my modal box-->
+        <div id="modal">
+            <div class="modal-box">
+                <div class="modal-box-header">You Won!</div>
+                <div class="modal-box-content">
+                    <div class="winning-message">
+                        <i class="fa-sharp fa-solid fa-xmark table-modal-x"></i>
+                    </div>
+                    <p class="modal-message"></p>
+                </div>
+                <div class="btn-box">
+                    <button id="btn-quit" class="btn-quit">Quit</button>
+                    <button id="btn-round" class="btn-round">Next Round</button>
+                </div>
+            </div>
         </div>
-        <div class="turn-sign">
-            <div><i class="fa-solid fa-xmark table-xx"></i></div>
-            <p id="game-status">Turn</p>
+
+        <!-- End of my modal box-->
+        <!--------Modal box 2-->
+        <div id="my-modal">
+            <div class="modal-box">
+                <div class="modal-box-content">
+                    <p class="modal-message">Restart game?</p>
+                </div>
+                <div class="btn-box">
+                    <button id="btn-cancel" class="btn-quit">No,Cancel</button>
+                    <button id="btn-restart" class="btn-round">Yes,Restart</button>
+                </div>
+            </div>
         </div>
-        <div class="reset-btn-container">
-            <button id="reset-btn" class="reset-btn"><i class="fa-solid fa-rotate-right"></i></button>
-        </div>
-    </div>
-    <div id="board-ai">
-        <div class="board-box" data-index="0"></div>
-        <div class="board-box" data-index="1"></div>
-        <div class="board-box" data-index="2"></div>
-        <div class="board-box" data-index="3"></div>
-        <div class="board-box" data-index="4"></div>
-        <div class="board-box" data-index="5"></div>
-        <div class="board-box" data-index="6"></div>
-        <div class="board-box" data-index="7"></div>
-        <div class="board-box" data-index="8"></div>
-    </div>
-    <div class="board-footer">
-        <div class="board-footer-1">
-            <p class="mark">X(player1)</p>
-            <p class="number-X">0</p>
-        </div>
-        <div class="board-footer-2">
-            <p class="mark">Ties</p>
-            <p class="number-tie">0</p>
-        </div>
-        <div class="board-footer-3">
-            <p class="mark">O(AI)</p>
-            <p class="number-O">0</p>
-        </div>
-    </div>
+        <!--------End of Modal box 2-->
+
+        <div class="table">
+            <div class="header">
+                <div class="cross-circle-table">
+                    <div><i class="fa-sharp fa-solid fa-xmark table-x"></i></div>
+                    <div><i class="fa-solid fa-circle-dot table-circle"></i></div>
+                </div>
+                <div class="turn-sign">
+                    <div><i class="fa-solid fa-xmark table-xx"></i></div>
+                    <p id="game-status">Turn</p>
+                </div>
+                <div class="reset-btn-container">
+                    <button id="reset-btn" class="reset-btn"><i class="fa-solid fa-rotate-right"></i></button>
+                </div>
+            </div>
+            <div id="board">
+                <div class="board-box" data-index="0"></div>
+                <div class="board-box" data-index="1"></div>
+                <div class="board-box" data-index="2"></div>
+                <div class="board-box" data-index="3"></div>
+                <div class="board-box" data-index="4"></div>
+                <div class="board-box" data-index="5"></div>
+                <div class="board-box" data-index="6"></div>
+                <div class="board-box" data-index="7"></div>
+                <div class="board-box" data-index="8"></div>
+            </div>
+            <div class="board-footer">
+                <div class="board-footer-1">
+                    <p class="mark">X(player1)</p>
+                    <p class="number-X">0</p>
+                </div>
+                <div class="board-footer-2">
+                    <p class="mark">Ties</p>
+                    <p class="number-tie">0</p>
+                </div>
+                <div class="board-footer-3">
+                    <p class="mark">O(player2)</p>
+                    <p class="number-O">0</p>
+                </div>
+            </div>
+
+
+</body>
+
+</html>
