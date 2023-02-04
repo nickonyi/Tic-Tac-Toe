@@ -327,8 +327,4 @@ const computerPlay = (function() {
     compPlay.addEventListener("click", () => {
         window.location.href = "ai-board.html";
     });
-
-
-
-
 }());
