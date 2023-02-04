@@ -44,6 +44,7 @@ const selectMarker = (function() {
 }());
 
 const Player = (sign) => {
+
     this.sign = sign;
     const getSign = () => {
         return sign;
@@ -69,11 +70,7 @@ const gameBoard = (function() {
 
 }());
 
-const computerBoard = (function() {
-    const prototype = gameBoard;
-    return Object.assign({}, prototype);
-})();
-console.log(computerBoard.board);
+
 
 const displayController = (function() {
     const boardDivs = document.querySelectorAll('.board-box');
@@ -242,8 +239,8 @@ const displayController = (function() {
 }());
 
 const gameController = (function() {
-    const playerX = Player("X");
-    const playerO = Player("O");
+    let playerX = Player("X");
+    let playerO = Player("O");
     const numberX = document.querySelector('.number-X');
     const numberO = document.querySelector('.number-O');
     const numberTie = document.querySelector('.number-tie');
@@ -252,7 +249,6 @@ const gameController = (function() {
     let winnerX = 0;
     let draw = 0;
     let winnerO = 0;
-
 
 
     const playRound = (getIndex) => {
@@ -322,10 +318,30 @@ const gameController = (function() {
         winnerO = 0;
         draw = 0;
     }
-    return { getIsOver, playRound, reset, getPlayerSign, resetCounter, winnerX, winnerO, draw }
+    return { getIsOver, playRound, reset, getPlayerSign, resetCounter, winnerX, winnerO, draw, checkWinner }
 }());
 
 
-const computerFillCell = (function() {
+const computerPlay = (function() {
+    const compPlay = document.getElementById('cpu-btn');
+    compPlay.addEventListener("click", () => {
+        window.location.href = "ai-board.html";
+    });
+
+
+
 
 }());
+
+const computerAI = (function() {
+    const prototype = gameBoard;
+
+    const evaluate = (index) => {
+        let winner = gameController.checkWinner(index);
+        return winner == "X" ? console.log('X') : winner == "O" ? console.log('O') : console.log("boo");
+    }
+
+    return { evaluate }
+})();
+
+computerAI.evaluate(1);
