@@ -219,7 +219,7 @@ body {
     box-shadow: 0 5px rgb(198, 223, 223, .3);
 }
 
-#board {
+#table-game {
     height: 300px;
     width: 100%;
     margin-top: 50px;

@@ -1,111 +1,90 @@
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Oswald:wght@300;400;500;600&family=Roboto+Condensed&family=Sevillana&display=swap" rel="stylesheet">
-    <script defer src="./index.js"></script>
-    <title>Tic Tac Toe</title>
+    <title>Tic-tac-toe</title>
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
 </head>
 
-<body class="table">
-    <div class="wrapper">
-        <div class="cross-circle">
-            <div><i class="fa-solid fa-xmark"></i></div>
-            <div><i class="fa-solid fa-circle-dot"></i></div>
-        </div>
-        <div class="sub-box">
-            <p class="sub-box-heading">Pick player 1's mark</p>
-            <div class="sub-box-circle-cross">
-                <div class="x-mark">
-                    <i class="fa-solid fa-xmark cross"></i>
-                </div>
-
-                <div class="circle-mark">
-                    <i class="fa-solid fa-circle-dot circle"></i>
-                </div>
-            </div>
-            <p class="sub-box-footer">Remember:X goes first</p>
-        </div>
-        <div class="buttons">
-            <div><button onclick="window.location.href='table.html';" class="game-btn cpu-btn">New Game (vs cpu)</button></div>
-            <div><button class="game-btn player-btn">New Game (vs player)</button></div>
-        </div>
-    </div>
-    <!-- Start of my modal box-->
-    <div id="modal">
-        <div class="modal-box">
-            <div class="modal-box-header">You Won!</div>
-            <div class="modal-box-content">
-                <div>
-                    <i class="fa-sharp fa-solid fa-xmark table-modal-x"></i>
-                </div>
-                <p class="modal-message">Takes the round</p>
-            </div>
-            <div class="btn-box">
-                <button class="btn-quit">Quit</button>
-                <button class="btn-round">Next Round</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- End of my modal box-->
-    <!--------Modal box 2-->
-    <div id="my-modal">
-        <div class="modal-box">
-            <div class="modal-box-content">
-                <p class="modal-message">Restart game?</p>
-            </div>
-            <div class="btn-box">
-                <button class="btn-quit">No,Cancel</button>
-                <button class="btn-round">Yes,Restart</button>
-            </div>
-        </div>
-    </div>
-    <!--------End of Modal box 2-->
-
-
-    <div class="header">
-        <div class="cross-circle-table">
-            <div><i class="fa-sharp fa-solid fa-xmark table-x"></i></div>
-            <div><i class="fa-solid fa-circle-dot table-circle"></i></div>
-        </div>
-        <div class="turn-sign">
-            <div><i class="fa-solid fa-xmark table-xx"></i></div>
-            <p>Turn</p>
-        </div>
-        <div class="reset-btn-container">
-            <button class="reset-btn"><i class="fa-solid fa-rotate-right"></i></button>
+<body onload="initialize()">
+    <h1>Tic-Tac-Toe</h1>
+    <table id="table_game">
+        <tr>
+            <td class="td_game">
+                <div id="cell0" onclick="cellClicked(this.id)" class="fixed"></div>
+            </td>
+            <td class="td_game">
+                <div id="cell1" onclick="cellClicked(this.id)" class="fixed"></div>
+            </td>
+            <td class="td_game">
+                <div id="cell2" onclick="cellClicked(this.id)" class="fixed"></div>
+            </td>
+        </tr>
+        <tr>
+            <td class="td_game">
+                <div id="cell3" onclick="cellClicked(this.id)" class="fixed"></div>
+            </td>
+            <td class="td_game">
+                <div id="cell4" onclick="cellClicked(this.id)" class="fixed"></div>
+            </td>
+            <td class="td_game">
+                <div id="cell5" onclick="cellClicked(this.id)" class="fixed"></div>
+            </td>
+        </tr>
+        <tr>
+            <td class="td_game">
+                <div id="cell6" onclick="cellClicked(this.id)" class="fixed"></div>
+            </td>
+            <td class="td_game">
+                <div id="cell7" onclick="cellClicked(this.id)" class="fixed"></div>
+            </td>
+            <td class="td_game">
+                <div id="cell8" onclick="cellClicked(this.id)" class="fixed"></div>
+            </td>
+        </tr>
+    </table>
+    <div id="restart" title="Start new game" onclick="restartGame(true)"><span style="vertical-align:top;position:relative;top:-10px">#</span></div>
+    <table>
+        <tr>
+            <th class="th_list">Computer</th>
+            <th class="th_list" style="padding-right:10px;padding-left:10px">Draws</th>
+            <th class="th_list">Player</th>
+        </tr>
+        <tr>
+            <td class="td_list" id="computer_score">0</td>
+            <td class="td_list" style="padding-right:10px;padding-left:10px" id="tie_score">0</td>
+            <td class="td_list" id="player_score">0</td>
+        </tr>
+    </table>
+    <!-- The modal dialog for announcing the winner -->
+    <div id="winAnnounce" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('winAnnounce')">&times;</span>
+            <p id="winText"></p>
         </div>
     </div>
-    <div id="board"></div>
-    <div class="board-footer">
-        <div class="board-footer-1">
-            <p class="mark">X(You)</p>
-            <p class="number">14</p>
-        </div>
-        <div class="board-footer-2">
-            <p class="mark">Ties</p>
-            <p class="number">32</p>
-        </div>
-        <div class="board-footer-3">
-            <p class="mark">O(cpu)</p>
-            <p class="number">11</p>
+    <!-- The dialog for getting feedback from the user -->
+    <div id="userFeedback" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <p id="questionText"></p>
+            <p><button id="yesBtn">Yes</button>&nbsp;<button id="noBtn">No</button></p>
         </div>
     </div>
-
-
-
-    <button id="btn">Open box</button>
-    <button id="btn-btn">We dem Boyz</button>
-
+    <!-- The options dialog -->
+    <div id="optionsDlg" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <h2>How would you like to play?</h2>
+            <h3>Difficulty:</h3>
+            <label><input type="radio" name="difficulty" id="r0" value="0">easy&nbsp;</label>
+            <label><input type="radio" name="difficulty" id="r1" value="1" checked>hard</label><br>
+            <h3>Play as:</h3>
+            <label><input type="radio" name="player" id="rx" value="x" checked>X (go first)&nbsp;</label>
+            <label><input type="radio" name="player" id="ro" value="o">O<br></label>
+            <p><button id="okBtn" onclick="getOptions()">Play</button></p>
+        </div>
+    </div>
 </body>
-
-</html>

@@ -6,7 +6,7 @@ const mainBoard = (function() {
     const cpuBtn = document.querySelector('.cpu-btn');
     const playerBtn = document.querySelector('.player-btn');
 
-    console.log(tableAI);
+
     cpuBtn.addEventListener("click", () => {
         table.style.display = "block";
         wrapper.style.display = "none";
@@ -332,16 +332,3 @@ const computerPlay = (function() {
 
 
 }());
-
-const computerAI = (function() {
-    const prototype = gameBoard;
-
-    const evaluate = (index) => {
-        let winner = gameController.checkWinner(index);
-        return winner == "X" ? console.log('X') : winner == "O" ? console.log('O') : console.log("boo");
-    }
-
-    return { evaluate }
-})();
-
-computerAI.evaluate(1);
