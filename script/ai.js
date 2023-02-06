@@ -80,7 +80,7 @@ const getFreeCellIndices = () => {
         }
         return resultArray;
     }
-    return Object.assign({}, proto, { getFreeCellIndeces });
+    return Object.assign({}, proto, { getFreeCellIndices });
 };
 
 const getRowValues = (index) => {
@@ -199,7 +199,10 @@ const getFirstWithTwoInARow = (agent) => {
             let freeCells = shuffleArray(this.getFreeCellIndices.getFreeCellIndices());
             for (i = 0; i < freeCells.length; i++) {
                 for (j = 0; j < 3; j++) {
-
+                    let rowV = this.getRowValues(j);
+                    let rowI = this.getRowValues(j);
+                    let columnV = this.getColumnValues(j);
+                    let columnI = this.getColumnValues(j);
                 }
             }
         }
