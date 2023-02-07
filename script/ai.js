@@ -18,6 +18,7 @@ let playerText = xText;
 let computerText = oText;
 let difficulty = 1;
 let myGrid = null;
+let bulls = [1, 2, 3, 4, 5, 6];
 
 
 //==================================
@@ -200,3 +201,39 @@ Grid.prototype.reset = function() {
     }
     return true;
 };
+
+function initialize() {
+    myGrid = new Grid();
+    moves = 0;
+    winner = 0;
+    gameOver = false;
+    whoseTurn = player;
+
+    for (i = 0; i <= myGrid.cells.length - 1; i++) {
+        myGrid.cells[i] = 0;
+    }
+    console.log(myGrid.cells);
+    //setTimeout(showOptions, 500);
+
+
+
+}
+
+const cellClicked = (id) => {
+    let idName = id.toString();
+    let cell = parseInt(idName[idName.length - 1]);
+    let cellId = document.getElementById(id);
+
+    console.log(cell);
+    console.log(myGrid.cells);
+    if (myGrid.cells[cell] > 0 || whoseTurn !== player || gameOver) {
+        return false;
+    }
+    moves += 1;
+    cellId.innerHTML = playerText;
+    myGrid.cells[cell] = player;
+
+    if (moves >= 5) {
+        alert("Wachia hapo");
+    }
+}
