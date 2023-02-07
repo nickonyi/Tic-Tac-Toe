@@ -16,11 +16,11 @@ const getRowValues = () => {
         }
         let i = index * 3;
 
-        console.log(wond);
+        console.log(grid.getCell);
     }
 
     return Object.assign({}, proto, { getRowValues });
 }
 
 const newGrid = getRowValues();
-console.log(newGrid.getCell());
+console.log(newGrid.getRowValues(1));
