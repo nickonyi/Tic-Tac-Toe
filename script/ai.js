@@ -18,7 +18,7 @@ let playerText = xText;
 let computerText = oText;
 let difficulty = 1;
 let myGrid = null;
-let bulls = [1, 2, 3, 4, 5, 6];
+
 
 
 //==================================
@@ -212,7 +212,7 @@ function initialize() {
     for (i = 0; i <= myGrid.cells.length - 1; i++) {
         myGrid.cells[i] = 0;
     }
-    console.log(myGrid.cells);
+
     //setTimeout(showOptions, 500);
 
 
@@ -224,16 +224,58 @@ const cellClicked = (id) => {
     let cell = parseInt(idName[idName.length - 1]);
     let cellId = document.getElementById(id);
 
-    console.log(cell);
-    console.log(myGrid.cells);
-    if (myGrid.cells[cell] > 0 || whoseTurn !== player || gameOver) {
+
+    if (myGrid.cells[cell] > 0 || whoseTurn !== player || gameOver || cellId.textContent != "") {
+
         return false;
     }
-    moves += 1;
-    cellId.innerHTML = playerText;
     myGrid.cells[cell] = player;
+    console.log(myGrid.cells);
+    moves++;
+    cellId.innerHTML = playerText;
+
 
     if (moves >= 5) {
-        alert("Wachia hapo");
+        winner = checkWin();
+    }
+    if (winner === 0) {
+        whoseTurn = computer;
+        makeComputerMove();
+    }
+}
+
+const makeComputerMove = () => {
+    if (gameOver) {
+        return false;
+    }
+    let cell = -1;
+    let myArr = [];
+    let corners = [0, 2, 6, 8];
+
+    if (moves >= 3) {
+        cell = myGrid.getFirstWithTwoInARow(computer);
+
+    }
+}
+
+const checkWin = () => {
+    winner = 0;
+
+    //rows
+    for (let i = 0; i < 2; i++) {
+        let row = myGrid.getRowValues(i);
+
+        if (row[0] === row[1] && row[0] === row[2]) {
+            if (row[0] === computer) {
+                score.computer++;
+                winner = computer;
+                alert(winner);
+            } else {
+                score.player++;
+                winner = player;
+                alert("The winner is " + winner);
+            }
+        }
+
     }
 }

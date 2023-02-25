@@ -2,7 +2,7 @@ let player = 'x';
 let computer = 'o';
 
 function Grid() {
-    this.cells = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    this.cells = [1, 2, 3, 0, 0, 6, 9, 8, 0];
 }
 
 Grid.prototype.getRowValues = function(index) {
@@ -108,3 +108,45 @@ const shuffleArray = (array) => {
 }
 
 console.log(shuffleArray(arrayy));
+
+Grid.prototype.getFreeCellIndices = function() {
+    var i = 0,
+        resultArray = [];
+    for (i = 0; i < this.cells.length; i++) {
+        if (this.cells[i] === 0) {
+            resultArray.push(i);
+        }
+    }
+    // console.log("resultArray: " + resultArray.toString());
+    // debugger;
+    return resultArray;
+};
+
+const sumArray = (array) => {
+    let sum = 0;
+    for (i = 0; i < array.length; i++) {
+        sum += array[i];
+    }
+    return sum;
+}
+
+const isInArray = (element, array) => {
+    if (array.indexOf(element) > -1) {
+        return true
+    }
+    return false;
+}
+
+
+
+const intRandom = (min, max) => {
+    let rand = min + Math.random() * (max + 1 - min);
+    return Math.floor(rand);
+}
+
+const rand = intRandom(1, 17);
+console.log(rand);
+
+const bod = newGrid.getFirstWithTwoInARow(computer);
+console.log(bod);
+console.log(newGrid.getRowIndices(2));
