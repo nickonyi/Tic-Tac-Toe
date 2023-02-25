@@ -65,31 +65,34 @@
                 </div>
             </div>
             <div id="table-game">
-                <div class="board-box" id="cell-0" onclick="cellClicked(this.id)" class="fixed"></div>
-                <div class="board-box" id="cell-1" onclick="cellClicked(this.id)" class="fixed"></div>
-                <div class="board-box" id="cell-2" onclick="cellClicked(this.id)" class="fixed"></div>
-                <div class="board-box" id="cell-3" onclick="cellClicked(this.id)" class="fixed"></div>
-                <div class="board-box" id="cell-4" onclick="cellClicked(this.id)" class="fixed"></div>
-                <div class="board-box" id="cell-5" onclick="cellClicked(this.id)" class="fixed"></div>
-                <div class="board-box" id="cell-6" onclick="cellClicked(this.id)" class="fixed"></div>
-                <div class="board-box" id="cell-7" onclick="cellClicked(this.id)" class="fixed"></div>
-                <div class="board-box" id="cell-8" onclick="cellClicked(this.id)" class="fixed"></div>
+                <div class="board-box" id="cell0" onclick="cellClicked(this.id)" class="fixed"></div>
+                <div class="board-box" id="cell1" onclick="cellClicked(this.id)" class="fixed"></div>
+                <div class="board-box" id="cell2" onclick="cellClicked(this.id)" class="fixed"></div>
+                <div class="board-box" id="cell3" onclick="cellClicked(this.id)" class="fixed"></div>
+                <div class="board-box" id="cell4" onclick="cellClicked(this.id)" class="fixed"></div>
+                <div class="board-box" id="cell5" onclick="cellClicked(this.id)" class="fixed"></div>
+                <div class="board-box" id="cell6" onclick="cellClicked(this.id)" class="fixed"></div>
+                <div class="board-box" id="cell7" onclick="cellClicked(this.id)" class="fixed"></div>
+                <div class="board-box" id="cell8" onclick="cellClicked(this.id)" class="fixed"></div>
             </div>
             <div class="board-footer">
                 <div class="board-footer-1">
                     <p class="mark">X(player1)</p>
-                    <p class="number-X">0</p>
+                    <p id="computer_score">0</p>
                 </div>
                 <div class="board-footer-2">
                     <p class="mark">Ties</p>
-                    <p class="number-tie">0</p>
+                    <p id="tie_score">0</p>
                 </div>
                 <div class="board-footer-3">
                     <p class="mark">O(AI)</p>
-                    <p class="number-O">0</p>
+                    <p id="player_score">0</p>
                 </div>
             </div>
 
+
+            <div id="winText"></div>
+            <div id="winAnnounce"></div>
 
 </body>
 

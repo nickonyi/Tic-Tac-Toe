@@ -245,37 +245,211 @@ const cellClicked = (id) => {
 }
 
 const makeComputerMove = () => {
+    // debugger;
     if (gameOver) {
         return false;
     }
-    let cell = -1;
-    let myArr = [];
-    let corners = [0, 2, 6, 8];
-
+    var cell = -1,
+        myArr = [],
+        corners = [0, 2, 6, 8];
     if (moves >= 3) {
         cell = myGrid.getFirstWithTwoInARow(computer);
+        if (cell === false) {
+            cell = myGrid.getFirstWithTwoInARow(player);
+        }
+        if (cell === false) {
+            if (myGrid.cells[4] === 0 && difficulty == 1) {
+                cell = 4;
+            } else {
+                myArr = myGrid.getFreeCellIndices();
+                cell = myArr[intRandom(0, myArr.length - 1)];
+            }
+        }
+        // Avoid a catch-22 situation:
+        if (moves == 3 && myGrid.cells[4] == computer && player == x && difficulty == 1) {
+            if (myGrid.cells[7] == player && (myGrid.cells[0] == player || myGrid.cells[2] == player)) {
+                myArr = [6, 8];
+                cell = myArr[intRandom(0, 1)];
+            } else if (myGrid.cells[5] == player && (myGrid.cells[0] == player || myGrid.cells[6] == player)) {
+                myArr = [2, 8];
+                cell = myArr[intRandom(0, 1)];
+            } else if (myGrid.cells[3] == player && (myGrid.cells[2] == player || myGrid.cells[8] == player)) {
+                myArr = [0, 6];
+                cell = myArr[intRandom(0, 1)];
+            } else if (myGrid.cells[1] == player && (myGrid.cells[6] == player || myGrid.cells[8] == player)) {
+                myArr = [0, 2];
+                cell = myArr[intRandom(0, 1)];
+            }
+        } else if (moves == 3 && myGrid.cells[4] == player && player == x && difficulty == 1) {
+            if (myGrid.cells[2] == player && myGrid.cells[6] == computer) {
+                cell = 8;
+            } else if (myGrid.cells[0] == player && myGrid.cells[8] == computer) {
+                cell = 6;
+            } else if (myGrid.cells[8] == player && myGrid.cells[0] == computer) {
+                cell = 2;
+            } else if (myGrid.cells[6] == player && myGrid.cells[2] == computer) {
+                cell = 0;
+            }
+        }
+    } else if (moves === 1 && myGrid.cells[4] == player && difficulty == 1) {
+        // if player is X and played center, play one of the corners
+        cell = corners[intRandom(0, 3)];
+    } else if (moves === 2 && myGrid.cells[4] == player && computer == x && difficulty == 1) {
+        // if player is O and played center, take two opposite corners
+        if (myGrid.cells[0] == computer) {
+            cell = 8;
+        } else if (myGrid.cells[2] == computer) {
+            cell = 6;
+        } else if (myGrid.cells[6] == computer) {
+            cell = 2;
+        } else if (myGrid.cells[8] == computer) {
+            cell = 0;
+        }
+    } else if (moves === 0 && intRandom(1, 10) < 8) {
+        // if computer is X, start with one of the corners sometimes
+        cell = corners[intRandom(0, 3)];
+    } else {
+        // choose the center of the board if possible
+        if (myGrid.cells[4] === 0 && difficulty == 1) {
+            cell = 4;
+        } else {
+            myArr = myGrid.getFreeCellIndices();
+            cell = myArr[intRandom(0, myArr.length - 1)];
+        }
+    }
+    var id = "cell" + cell.toString();
+    // console.log("computer chooses " + id);
+    document.getElementById(id).innerHTML = computerText;
+    document.getElementById(id).style.cursor = "default";
+    // randomize rotation of marks on the board to make them look
+    // as if they were handwritten
 
+    myGrid.cells[cell] = computer;
+    moves++;
+    if (moves >= 5) {
+        winner = checkWin();
+    }
+    if (winner === 0 && !gameOver) {
+        whoseTurn = player;
     }
 }
 
-const checkWin = () => {
+function checkWin() {
     winner = 0;
 
-    //rows
-    for (let i = 0; i < 2; i++) {
-        let row = myGrid.getRowValues(i);
-
-        if (row[0] === row[1] && row[0] === row[2]) {
-            if (row[0] === computer) {
+    // rows
+    for (var i = 0; i <= 2; i++) {
+        var row = myGrid.getRowValues(i);
+        if (row[0] == row[1] && row[0] == row[2]) {
+            if (row[0] == computer) {
                 score.computer++;
                 winner = computer;
-                alert(winner);
+                console.log("computer wins");
             } else {
                 score.player++;
                 winner = player;
-                alert("The winner is " + winner);
+                console.log("player wins");
             }
+            // Give the winning row/column/diagonal a different bg-color
+            var tmpAr = myGrid.getRowIndices(i);
+            for (var j = 0; j < tmpAr.length; j++) {
+                var str = "cell" + tmpAr[j];
+                document.getElementById(str).classList.add("win-color");
+            }
+            setTimeout(endGame, 1000, winner);
+            return winner;
         }
-
     }
+
+    //  // columns
+    //  for (i = 0; i <= 2; i++) {
+    //      var col = myGrid.getColumnValues(i);
+    //      if (col[0] > 0 && col[0] == col[1] && col[0] == col[2]) {
+    //          if (col[0] == computer) {
+    //              score.computer++;
+    //              winner = computer;
+    //              // console.log("computer wins");
+    //          } else {
+    //              score.player++;
+    //              winner = player;
+    //              // console.log("player wins");
+    //          }
+    //          // Give the winning row/column/diagonal a different bg-color
+    //          var tmpAr = myGrid.getColumnIndices(i);
+    //          for (var j = 0; j < tmpAr.length; j++) {
+    //              var str = "cell" + tmpAr[j];
+    //              document.getElementById(str).classList.add("win-color");
+    //          }
+    //          setTimeout(endGame, 1000, winner);
+    //          return winner;
+    //      }
+    //  }
+    //
+    //  // diagonals
+    //  for (i = 0; i <= 1; i++) {
+    //      var diagonal = myGrid.getDiagValues(i);
+    //      if (diagonal[0] > 0 && diagonal[0] == diagonal[1] && diagonal[0] == diagonal[2]) {
+    //          if (diagonal[0] == computer) {
+    //              score.computer++;
+    //              winner = computer;
+    //              // console.log("computer wins");
+    //          } else {
+    //              score.player++;
+    //              winner = player;
+    //              // console.log("player wins");
+    //          }
+    //          // Give the winning row/column/diagonal a different bg-color
+    //          var tmpAr = myGrid.getDiagIndices(i);
+    //          for (var j = 0; j < tmpAr.length; j++) {
+    //              var str = "cell" + tmpAr[j];
+    //              document.getElementById(str).classList.add("win-color");
+    //          }
+    //          setTimeout(endGame, 1000, winner);
+    //          return winner;
+    //      }
+    //  }
+
+    // If we haven't returned a winner by now, if the board is full, it's a tie
+    var myArr = myGrid.getFreeCellIndices();
+    if (myArr.length === 0) {
+        winner = 10;
+        score.ties++;
+        endGame(winner);
+        return winner;
+    }
+
+    return winner;
 }
+
+function announceWinner(text) {
+    document.getElementById("winText").innerHTML = text;
+    document.getElementById("winAnnounce").style.display = "block";
+    //setTimeout(closeModal, 1400, "winAnnounce");
+}
+
+
+function endGame(who) {
+    if (who == player) {
+        announceWinner("Congratulations, you won!");
+    } else if (who == computer) {
+        announceWinner("Computer wins!");
+    } else {
+        announceWinner("It's a tie!");
+    }
+    gameOver = true;
+    whoseTurn = 0;
+    moves = 0;
+    winner = 0;
+    document.getElementById("computer_score").innerHTML = score.computer;
+    document.getElementById("tie_score").innerHTML = score.ties;
+    document.getElementById("player_score").innerHTML = score.player;
+    for (var i = 0; i <= 8; i++) {
+        var id = "cell" + i.toString();
+        document.getElementById(id).style.cursor = "default";
+    }
+    // setTimeout(restartGame, 800);
+}
+
+console.log(score.computer);
+console.log(score.player);
+console.log(score.tie);
