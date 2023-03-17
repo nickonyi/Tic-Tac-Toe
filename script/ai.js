@@ -3,9 +3,9 @@ let moves = 0;
 let winner = 0;
 let x = 1;
 let o = 3;
-let player = "x";
-let computer = "o";
-let whoseTurn = "x";
+let player = x;
+let computer = o;
+let whoseTurn = x;
 let gameOver = false;
 let score = {
     computer: 0,
@@ -254,10 +254,10 @@ const makeComputerMove = () => {
         corners = [0, 2, 6, 8];
     if (moves >= 3) {
         cell = myGrid.getFirstWithTwoInARow(computer);
-        console.log(cell);
+
         if (cell === false) {
             cell = myGrid.getFirstWithTwoInARow(player);
-            console.log(cell);
+
         }
         if (cell === false) {
             if (myGrid.cells[4] === 0 && difficulty == 1) {
@@ -342,7 +342,7 @@ function checkWin() {
     // rows
     for (var i = 0; i <= 2; i++) {
         var row = myGrid.getRowValues(i);
-        if (row[0] == row[1] && row[0] == row[2]) {
+        if (row[0] > 0 && row[0] == row[1] && row[0] == row[2]) {
             if (row[0] == computer) {
                 score.computer++;
                 winner = computer;
@@ -366,7 +366,7 @@ function checkWin() {
     // columns
     for (i = 0; i <= 2; i++) {
         var col = myGrid.getColumnValues(i);
-        if (col[0] == col[1] && col[0] == col[2]) {
+        if (col[0] > 0 && col[0] == col[1] && col[0] == col[2]) {
             if (col[0] == computer) {
                 score.computer++;
                 winner = computer;
@@ -390,7 +390,7 @@ function checkWin() {
     // diagonals
     for (i = 0; i <= 1; i++) {
         var diagonal = myGrid.getDiagValues(i);
-        if (diagonal[0] == diagonal[1] && diagonal[0] == diagonal[2]) {
+        if (diagonal[0] > 0 && diagonal[0] == diagonal[1] && diagonal[0] == diagonal[2]) {
             if (diagonal[0] == computer) {
                 score.computer++;
                 winner = computer;

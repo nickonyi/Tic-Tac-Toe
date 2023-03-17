@@ -1,5 +1,29 @@
+let player = "x";
+let computer = "o";
+
+const shuffleArray = (array) => {
+    let counter = array.length;
+    let temp;
+    let index;
+    while (counter > 0) {
+        index = Math.floor(Math.random() * counter);
+        counter--;
+        temp = array[counter];
+        array[counter] = array[index];
+        array[index] = temp;
+    }
+    return array;
+}
+const sumArray = (array) => {
+    let sum = 0;
+    for (i = 0; i < array.length; i++) {
+        sum += array[i];
+    }
+    return sum;
+}
+
 function Grid() {
-    this.cells = new Array(9);
+    this.cells = [1, 2, 3, 0, 0, 3, 0, 3];
 
 }
 
@@ -15,13 +39,99 @@ Grid.prototype.getFreeCellIndices = function() {
     // debugger;
     return resultArray;
 };
+
+Grid.prototype.getRowValues = function(index) {
+    if (index !== 0 && index !== 1 && index !== 2) {
+        console.error("Wrong arg for getRowValues!");
+        return undefined;
+    }
+    var i = index * 3;
+    return this.cells.slice(i, i + 3);
+};
+
+// Get a row (accepts 0, 1, or 2 as argument).
+// Returns an array with the indices, not their values.
+Grid.prototype.getRowIndices = function(index) {
+    if (index !== 0 && index !== 1 && index !== 2) {
+        console.error("Wrong arg for getRowIndices!");
+        return undefined;
+    }
+    var row = [];
+    index = index * 3;
+    row.push(index);
+    row.push(index + 1);
+    row.push(index + 2);
+    return row;
+};
+
+// get a column (values)
+Grid.prototype.getColumnValues = function(index) {
+    if (index !== 0 && index !== 1 && index !== 2) {
+        console.error("Wrong arg for getColumnValues!");
+        return undefined;
+    }
+    var i, column = [];
+    for (i = index; i < this.cells.length; i += 3) {
+        column.push(this.cells[i]);
+    }
+    return column;
+};
+
+// get a column (indices)
+Grid.prototype.getColumnIndices = function(index) {
+    if (index !== 0 && index !== 1 && index !== 2) {
+        console.error("Wrong arg for getColumnIndices!");
+        return undefined;
+    }
+    var i, column = [];
+    for (i = index; i < this.cells.length; i += 3) {
+        column.push(i);
+    }
+    return column;
+};
+
+// get diagonal cells
+// arg 0: from top-left
+// arg 1: from top-right
+Grid.prototype.getDiagValues = function(arg) {
+    var cells = [];
+    if (arg !== 1 && arg !== 0) {
+        console.error("Wrong arg for getDiagValues!");
+        return undefined;
+    } else if (arg === 0) {
+        cells.push(this.cells[0]);
+        cells.push(this.cells[4]);
+        cells.push(this.cells[8]);
+    } else {
+        cells.push(this.cells[2]);
+        cells.push(this.cells[4]);
+        cells.push(this.cells[6]);
+    }
+    return cells;
+};
+
+// get diagonal cells
+// arg 0: from top-left
+// arg 1: from top-right
+Grid.prototype.getDiagIndices = function(arg) {
+    if (arg !== 1 && arg !== 0) {
+        console.error("Wrong arg for getDiagIndices!");
+        return undefined;
+    } else if (arg === 0) {
+        return [0, 4, 8];
+    } else {
+        return [2, 4, 6];
+    }
+};
+
 Grid.prototype.getFirstWithTwoInARow = function(agent) {
     if (agent !== computer && agent !== player) {
         console.error("Function getFirstWithTwoInARow accepts only player or computer as argument.");
         return undefined;
     }
-    var sum = agent * 2,
-        freeCells = shuffleArray(this.getFreeCellIndices());
+    var sum = agent * 2;
+    console.log(sum);
+    freeCells = shuffleArray(this.getFreeCellIndices());
     for (var i = 0; i < freeCells.length; i++) {
         for (var j = 0; j < 3; j++) {
             var rowV = this.getRowValues(j);
@@ -44,3 +154,8 @@ Grid.prototype.getFirstWithTwoInARow = function(agent) {
     }
     return false;
 };
+
+const newGrid = new Grid();
+const dalo = newGrid.getFirstWithTwoInARow(computer);
+console.log(dalo);
+console.log(newGrid.getFreeCellIndices());
