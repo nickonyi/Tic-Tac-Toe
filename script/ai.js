@@ -254,8 +254,10 @@ const makeComputerMove = () => {
         corners = [0, 2, 6, 8];
     if (moves >= 3) {
         cell = myGrid.getFirstWithTwoInARow(computer);
+        console.log(cell);
         if (cell === false) {
             cell = myGrid.getFirstWithTwoInARow(player);
+            console.log(cell);
         }
         if (cell === false) {
             if (myGrid.cells[4] === 0 && difficulty == 1) {
@@ -364,7 +366,7 @@ function checkWin() {
     // columns
     for (i = 0; i <= 2; i++) {
         var col = myGrid.getColumnValues(i);
-        if (col[0] > 0 && col[0] == col[1] && col[0] == col[2]) {
+        if (col[0] == col[1] && col[0] == col[2]) {
             if (col[0] == computer) {
                 score.computer++;
                 winner = computer;
