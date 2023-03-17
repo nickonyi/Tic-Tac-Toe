@@ -18,6 +18,7 @@ let playerText = xText;
 let computerText = oText;
 let difficulty = 1;
 let myGrid = null;
+let modal = document.getElementById('modal');
 
 
 
@@ -433,10 +434,14 @@ function announceWinner(text) {
 function endGame(who) {
     if (who == player) {
         announceWinner("Congratulations, you won!");
+        modal.style.display = "block";
+
     } else if (who == computer) {
         announceWinner("Computer wins!");
+        modal.style.display = "block";
     } else {
         announceWinner("It's a tie!");
+        modal.style.display = "block";
     }
     gameOver = true;
     whoseTurn = 0;
@@ -451,7 +456,3 @@ function endGame(who) {
     }
     // setTimeout(restartGame, 800);
 }
-
-console.log(score.computer);
-console.log(score.player);
-console.log(score.tie);
