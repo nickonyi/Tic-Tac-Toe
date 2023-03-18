@@ -425,8 +425,16 @@ function checkWin() {
 }
 
 function announceWinner(text) {
-    document.getElementById("winText").innerHTML = text;
-    document.getElementById("winAnnounce").style.display = "block";
+    const modal = document.getElementById("modal");
+    const modalHeader = document.querySelector(".modal-box-header");
+    const winningMessage = document.querySelector(".winning-message");
+
+
+    modal.style.display = "block";
+    modalHeader.textContent = text;
+    winningMessage.textContent = `${whoseTurn} takes the round`;
+
+
     //setTimeout(closeModal, 1400, "winAnnounce");
 }
 
@@ -434,8 +442,7 @@ function announceWinner(text) {
 function endGame(who) {
     if (who == player) {
         announceWinner("Congratulations, you won!");
-        modal.style.display = "block";
-
+        s
     } else if (who == computer) {
         announceWinner("Computer wins!");
         modal.style.display = "block";
