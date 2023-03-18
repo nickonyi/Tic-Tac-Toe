@@ -465,6 +465,8 @@ function endGame(who) {
         var id = "cell" + i.toString();
         document.getElementById(id).style.cursor = "default";
     }
+    nextRound();
+
     // setTimeout(restartGame, 800);
 }
 
@@ -477,14 +479,14 @@ function update() {
 }
 
 
-const nextRound = (function() {
+const nextRound = function() {
     const btnRound = document.getElementById("btn-round");
 
     btnRound.addEventListener("click", () => {
         const newGrid = new Grid();
         newGrid.reset();
         update();
-        gameOver = true;
         modal.style.display = "none";
     })
-}());
+    initialize();
+};
