@@ -432,7 +432,14 @@ function announceWinner(text) {
 
     modal.style.display = "block";
     modalHeader.textContent = text;
-    winningMessage.textContent = `${whoseTurn} takes the round`;
+    if (winner == computer) {
+        winningMessage.textContent = `O takes the round`;
+    } else if (winner == player) {
+        winningMessage.textContent = `X takes the round`;
+    } else {
+        winningMessage.textContent = `Looks like you have locked horns!`;
+    }
+
 
 
     //setTimeout(closeModal, 1400, "winAnnounce");
@@ -442,13 +449,10 @@ function announceWinner(text) {
 function endGame(who) {
     if (who == player) {
         announceWinner("Congratulations, you won!");
-        s
     } else if (who == computer) {
         announceWinner("Computer wins!");
-        modal.style.display = "block";
     } else {
         announceWinner("It's a tie!");
-        modal.style.display = "block";
     }
     gameOver = true;
     whoseTurn = 0;
