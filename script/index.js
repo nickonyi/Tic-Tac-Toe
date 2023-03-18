@@ -197,8 +197,6 @@ const displayController = (function() {
             table.style.display = "none";
             wrapper.style.display = "block";
             modal.style.display = "none";
-
-
         }
     }());
 

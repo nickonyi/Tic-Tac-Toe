@@ -467,3 +467,24 @@ function endGame(who) {
     }
     // setTimeout(restartGame, 800);
 }
+
+function update() {
+    const boardBxs = document.querySelectorAll('.board-box');
+    for (i = 0; i < boardBxs.length; i++) {
+        boardBxs[i].innerHTML = "";
+    }
+
+}
+
+
+const nextRound = (function() {
+    const btnRound = document.getElementById("btn-round");
+
+    btnRound.addEventListener("click", () => {
+        const newGrid = new Grid();
+        newGrid.reset();
+        update();
+        gameOver = true;
+        modal.style.display = "none";
+    })
+}());
