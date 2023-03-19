@@ -490,3 +490,22 @@ const nextRound = function() {
     })
     initialize();
 };
+
+const quit = (function() {
+    const quitBtn = document.getElementById("btn-quit");
+    quitBtn.onclick = function() {
+        initialize();
+        update();
+        modal.style.display = "none";
+        window.location.href = "index.html"
+    }
+}());
+
+
+const exit = (function() {
+    window.onclick = function(e) {
+        if (e.target === modal) {
+            modal.style.display = "none";
+        }
+    }
+}());

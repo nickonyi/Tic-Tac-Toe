@@ -425,6 +425,10 @@ body {
     color: rgb(243, 148, 25);
 }
 
+.winning-message {
+    font-size: 0.975rem;
+}
+
 
 /*-----------------------------*/
 
