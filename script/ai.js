@@ -353,12 +353,7 @@ function checkWin() {
                 winner = player;
                 console.log("player wins");
             }
-            // Give the winning row/column/diagonal a different bg-color
-            var tmpAr = myGrid.getRowIndices(i);
-            for (var j = 0; j < tmpAr.length; j++) {
-                var str = "cell" + tmpAr[j];
-                document.getElementById(str).classList.add("win-color");
-            }
+
             setTimeout(endGame, 1000, winner);
             return winner;
         }
@@ -377,12 +372,7 @@ function checkWin() {
                 winner = player;
                 // console.log("player wins");
             }
-            // Give the winning row/column/diagonal a different bg-color
-            var tmpAr = myGrid.getColumnIndices(i);
-            for (var j = 0; j < tmpAr.length; j++) {
-                var str = "cell" + tmpAr[j];
-                document.getElementById(str).classList.add("win-color");
-            }
+
             setTimeout(endGame, 1000, winner);
             return winner;
         }
@@ -401,12 +391,7 @@ function checkWin() {
                 winner = player;
                 // console.log("player wins");
             }
-            // Give the winning row/column/diagonal a different bg-color
-            var tmpAr = myGrid.getDiagIndices(i);
-            for (var j = 0; j < tmpAr.length; j++) {
-                var str = "cell" + tmpAr[j];
-                document.getElementById(str).classList.add("win-color");
-            }
+
             setTimeout(endGame, 1000, winner);
             return winner;
         }
