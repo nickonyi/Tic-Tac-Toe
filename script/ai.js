@@ -232,7 +232,7 @@ const cellClicked = (id) => {
         return false;
     }
     myGrid.cells[cell] = player;
-    console.log(myGrid.cells);
+    console.table(myGrid.cells);
     moves++;
     cellId.innerHTML = playerText;
 
@@ -244,6 +244,7 @@ const cellClicked = (id) => {
         whoseTurn = computer;
         makeComputerMove();
     }
+    return true;
 }
 
 const makeComputerMove = () => {
@@ -322,7 +323,7 @@ const makeComputerMove = () => {
         }
     }
     var id = "cell" + cell.toString();
-    // console.log("computer chooses " + id);
+    console.log("computer chooses " + id);
     document.getElementById(id).innerHTML = computerText;
     document.getElementById(id).style.cursor = "default";
 
@@ -335,6 +336,7 @@ const makeComputerMove = () => {
     if (winner === 0 && !gameOver) {
         whoseTurn = player;
     }
+    return true;
 }
 
 function checkWin() {
@@ -468,8 +470,7 @@ const nextRound = function() {
     const btnRound = document.getElementById("btn-round");
 
     btnRound.addEventListener("click", () => {
-        const newGrid = new Grid();
-        newGrid.reset();
+        myGrid.reset();
         update();
         modal.style.display = "none";
     })
