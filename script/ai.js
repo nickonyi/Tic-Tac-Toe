@@ -232,7 +232,7 @@ const cellClicked = (id) => {
         return false;
     }
     myGrid.cells[cell] = player;
-    console.table(myGrid.cells);
+
     moves++;
     cellId.innerHTML = playerText;
 
