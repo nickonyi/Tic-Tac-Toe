@@ -502,15 +502,13 @@ const gameRestart = (function() {
     }
 }());
 const resetScore = () => {
-    let score = {
-        computer: 0,
-        player: 0,
-        ties: 0
-    }
+    score.computer = 0;
+    score.player = 0;
+    score.ties = 0;
 }
 const updateScore = () => {
-    document.getElementById("computer_score").innerHTML = 0;
-    document.getElementById("tie_score").innerHTML = 0;
+    document.getElementById("computer_score").innerHTML = score.computer;
+    document.getElementById("tie_score").innerHTML = score.ties;
     document.getElementById("player_score").innerHTML = score.player;
 }
 
@@ -523,6 +521,13 @@ const gameReset = (function() {
         resetScore();
         updateScore();
         update();
+        modal2.style.display = "none";
+    }
+}());
+
+const cancelReset = (function() {
+    const btnCancel = document.getElementById("btn-cancel");
+    btnCancel.onclick = function() {
         modal2.style.display = "none";
     }
 }());
