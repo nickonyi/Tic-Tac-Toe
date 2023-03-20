@@ -19,6 +19,7 @@ let computerText = oText;
 let difficulty = 1;
 let myGrid = null;
 let modal = document.getElementById('modal');
+let modal2 = document.getElementById('my-modal');
 
 
 
@@ -324,8 +325,7 @@ const makeComputerMove = () => {
     // console.log("computer chooses " + id);
     document.getElementById(id).innerHTML = computerText;
     document.getElementById(id).style.cursor = "default";
-    // randomize rotation of marks on the board to make them look
-    // as if they were handwritten
+
 
     myGrid.cells[cell] = computer;
     moves++;
@@ -492,5 +492,37 @@ const exit = (function() {
         if (e.target === modal) {
             modal.style.display = "none";
         }
+    }
+}());
+
+const gameRestart = (function() {
+    const resetBtn = document.getElementById("reset-btn");
+    resetBtn.onclick = function() {
+        modal2.style.display = "block";
+    }
+}());
+const resetScore = () => {
+    let score = {
+        computer: 0,
+        player: 0,
+        ties: 0
+    }
+}
+const updateScore = () => {
+    document.getElementById("computer_score").innerHTML = 0;
+    document.getElementById("tie_score").innerHTML = 0;
+    document.getElementById("player_score").innerHTML = score.player;
+}
+
+
+
+const gameReset = (function() {
+    const btnRestart = document.getElementById("btn-restart");
+    btnRestart.onclick = function() {
+        initialize();
+        resetScore();
+        updateScore();
+        update();
+        modal2.style.display = "none";
     }
 }());
